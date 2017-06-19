@@ -21,7 +21,7 @@ def _numerical_gradient_no_batch(f, x):
 
     return grad
 
-def numerical_gradient(g, X):
+def numerical_gradient(f, X):
     if X.ndim == 1:
         return _numerical_gradient_no_batch(f, X)
     else:
