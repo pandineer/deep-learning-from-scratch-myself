@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pylab as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def numerical_gradient(f, x):
+def _numerical_gradient_no_batch(f, x):
     h = 1e-4 # 0.0001
     grad = np.zeros_like(x) # generate array which as the same shape as x, and whose all elements have 0
 
@@ -20,6 +20,17 @@ def numerical_gradient(f, x):
         x[idx] = tmp_val # revert value
 
     return grad
+
+def numerical_gradient(g, X):
+    if X.ndim == 1:
+        return _numerical_gradient_no_batch(f, X)
+    else:
+        grad = np.zeros_like(X)
+
+        for idx, x in enumerate(X):
+            grad[idx] = _numerical_gradient_no_batch(f, x)
+
+        return grad
 
 def function_2(x):
     if x.ndim == 1:
