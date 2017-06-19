@@ -12,7 +12,7 @@ def tangent_line(f, x):
     d = numerical_diff(f, x)
     print(d)
     y = f(x) - d*x
-return lambda t: d*t + y
+    return lambda t: d*t + y
 
 x = np.arange(0.0, 20.0, 0.1) # array with every 0.1 from 0 to 20
 y = function_1(x)
@@ -20,7 +20,7 @@ plt.xlabel("x")
 plt.ylabel("f(x)")
 plt.plot(x, y)
 
-tf = tangent_line(function_1, 5)
+tf = tangent_line(function_1, 10)
 y2 = tf(x)
 
 plt.plot(x, y2)
